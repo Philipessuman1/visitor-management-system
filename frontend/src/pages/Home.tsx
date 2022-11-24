@@ -35,7 +35,7 @@ export default function Home(){
       <button type="button" className="btn btn-lg all-btn"><Link to='/admin'>Admin</Link></button>
       
 
-      <div className="position-absolute end-0 top-50 ">
+      <div className="position-absolute end-0 top-50 w-20 ">
         <h3>Click to scan qrCode for Quick log in</h3>
         <Link to='/scanner'><img src={qrCodeImage} /></Link>
       </div>
