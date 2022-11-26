@@ -1,5 +1,4 @@
 .home_background {
-   
     width:100%;
     height: 100%;
     background-image: url('./assets/hand-shake1.jpg');
@@ -7,18 +6,26 @@
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    /* color: E45218; */
     height: 100vh;
     color: white;
-    
 }
-.all-btn{
-    color: #E45218;
+.scanner-img{
+    width: 4rem;
+    height: 4rem;
 }
-.text {
-    color: whitesmoke;
-    font-size: 30px;
+.logIn {
+    border: 2px solid white;
+}
+.logIn:hover{
+    background-color: white;
 }
 .errorMessage{
     color: red;
+}
+.nav-background {
+    background-color: #E45218;
+}
+.form-bgColor{
+    background-color: rgb(66, 65, 65);
+    border-radius: 2rem;
 }
