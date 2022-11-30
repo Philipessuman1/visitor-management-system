@@ -1,19 +1,20 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import cors from 'cors';
-//import visitorRouter from './visitors/visitorRouter';
-//import adminRouter from './admin/adminRouter';
+import visitorRouter from './visitors/visitorRouter';
+import adminRouter from './admin/adminRouter';
 import swaggerJsDoc from 'swagger-jsdoc';
 import swaggerUI from 'swagger-ui-express';
 import * as dotenv from "dotenv";
 dotenv.config();
+import path from 'path';
 
 const swaggerOptions = {
     swaggerDefinition: {
         info: {
             title: "Vilog",
             description: "Visitors Logbook",
-            servers: ["http://localhost:5000"],
+            servers: ["http://localhost:4000"],
             version: "1.0.0"
         }
     },
@@ -45,17 +46,17 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
 app.use(cors());
 app.use(express.json()); //req.body
 
-/*if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "production") {
     app.use(express.static('../client/build'))
-}*/
+}
 
-//app.use('/visitors', visitorRouter);
-//app.use('/admin', adminRouter);
+app.use('/visitors', visitorRouter);
+app.use('/admin', adminRouter);
 
-/*app.get('*', (req, res) => {
+app.get('*', (req, res) => {
     console.log('outer route')
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
-})*/
+})
 
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`)
