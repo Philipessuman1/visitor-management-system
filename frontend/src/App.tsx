@@ -7,6 +7,9 @@ import Admin from './pages/Admin'
 import './App.css'
 import QrcodeReader from './components/QrcodeReader'
 import Login from './components/Login'
+import Employee from './components/Employee'
+import LiveVisitors from './components/LiveVisitors'
+import AllVisitors from './components/AllVisitors'
 
 
 const App = () => {
@@ -16,7 +19,11 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home/>} ></Route>
         <Route path='/host' element={<Host/>}    />
-        <Route path='/admin' element={<Admin/>}    />
+        <Route path='/admin' element={<Admin/>}>
+          <Route path='employee' element={<Employee/>} />
+          <Route path='live-visitors' element={<LiveVisitors/>} />
+          <Route path='all-visitors' element={<AllVisitors />} />
+        </Route>
         <Route path='/scanner' element={<QrcodeReader />} />
         <Route path='/login' element={<Login />} />
       </Routes>
