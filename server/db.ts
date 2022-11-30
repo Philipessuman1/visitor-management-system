@@ -16,11 +16,4 @@ const proConfig = {
       }
 };
 
-/*export const pool = new Pool( {
-    user: "postgres",
-    password: "postgres",
-    database: "postgres",
-    host: "localhost",
-    port: 5432
-});*/
 export const pool = new Pool(process.env.NODE_ENV === "production" ? proConfig : devConfig);
