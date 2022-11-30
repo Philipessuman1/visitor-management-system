@@ -2,14 +2,15 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
-import Visitor from './pages/Visitor'
 import Host from './pages/Host'
 import Admin from './pages/Admin'
-
 import './App.css'
 import QrcodeReader from './components/QrcodeReader'
 import Login from './components/Login'
-import SignIn from './components/SignIn'
+import Employee from './components/Employee'
+import LiveVisitors from './components/LiveVisitors'
+import AllVisitors from './components/AllVisitors'
+
 
 const App = () => {
   return (
@@ -17,9 +18,12 @@ const App = () => {
       
       <Routes>
         <Route path='/' element={<Home/>} ></Route>
-        <Route path='/visitor' element={<Visitor/>}    />
         <Route path='/host' element={<Host/>}    />
-        <Route path='/admin' element={<Admin/>}    />
+        <Route path='/admin' element={<Admin/>}>
+          <Route path='employee' element={<Employee/>} />
+          <Route path='live-visitors' element={<LiveVisitors/>} />
+          <Route path='all-visitors' element={<AllVisitors />} />
+        </Route>
         <Route path='/scanner' element={<QrcodeReader />} />
         <Route path='/login' element={<Login />} />
       </Routes>

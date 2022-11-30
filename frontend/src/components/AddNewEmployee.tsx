@@ -1,40 +1,29 @@
-import React, {useState} from 'react'
-import QRCode from 'qrcode'
+import { ResetTv } from '@mui/icons-material'
+import React from 'react'
 import { useForm } from 'react-hook-form'
+import '../App.css'
+import employee from '../data/employee'
 
-
-const QrcodeGenerator = () => {
-    const [url, setUrl] = useState('')
-    const [qrcode, setQrcode] = useState('')
-
-    const GenerateQRCode = () => {
-        QRCode.toDataURL(url, (err, url) => {
-            if (err) return console.error(err)
-
-            console.log(url)
-            setQrcode(url)
-        })
-    }
-
-
+const AddNewEmployee = () => {
     const {
-      control,
-      register,
-      handleSubmit,
-      formState: { errors }
-    } = useForm();
-  
+        register,
+        handleSubmit,
+        formState:{errors }
+    } = useForm()
+    
+
     const onSubmit = (data:{}) => {
-      setUrl(JSON.stringify(data))
-      
-    };
+        console.log(JSON.stringify(data));
+        
+      };
 
   return (
-    <div className='d-flex justify-content-between mt-4'>
-      <form className='container w-50 form-bgColor ' onSubmit={handleSubmit(onSubmit)}>
-            <h3>Schedule Appointment with Visitor Details</h3>
+    <div>
+      <div>
+      <form className='container-sm w-50 form-bgColor form-text' onSubmit={handleSubmit(onSubmit)}>
+          <h2 className='d-flex justify-content-center d-inline'>Add Employee</h2>
             <div className="mb-3">
-              <label className='form-label'>Name</label>
+              <label className='form-label'>Name of Employee</label>
               <input 
                 className='form-control'
                 placeholder='eg.Daryl Jones'
@@ -72,23 +61,18 @@ const QrcodeGenerator = () => {
               )}
             </div>
             <div className="mb-3">
-              <label className='form-label'>Company Name</label>
+              <label className='form-label'>Position</label>
               <input
                 className='form-control'
-                placeholder='eg.Microsoft Ghana' 
+                placeholder='eg.Junior Developer' 
                 type='text'
-                {...register('company', {
+                {...register('position', {
                   required:true,
                   minLength: 2
                 })}
               />
-              {errors.company && errors.company.type === "required" && (
-                <p className="errorMessage">Company Name is required.</p>
-              )}
-              {errors.company && errors.company.type === "minLength" && (
-                <p className="errorMessage">
-                  Company name should be valid
-                </p>
+              {errors.position && errors.position.type === "required" && (
+                <p className="errorMessage">Position is required</p>
               )}
               </div>
             <div className="mb-3">
@@ -111,20 +95,14 @@ const QrcodeGenerator = () => {
                 </p>
               )}
             </div>
-            <button className='btn btn-success m-auto' type="submit">Submit</button>
-            </form>
-            <div className='w-50'>
-                <h3>Click Generate to generate QrCode for your guest</h3>
-                <button onClick={GenerateQRCode}>Generate</button>
-                {qrcode && <>
-                    <img src={qrcode}   />
-                    <a href={qrcode} download='qrcode.png'>Download</a>
-                </>}
+            <div className="mb-3 d-flex justify-content-around">
+              <button className='btn btn-danger' type='submit'>Save</button>
+              <button className='btn btn-success'>Clear</button>
             </div>
-        
-
+        </form>
+      </div>
     </div>
   )
 }
 
-export default QrcodeGenerator
+export default AddNewEmployee

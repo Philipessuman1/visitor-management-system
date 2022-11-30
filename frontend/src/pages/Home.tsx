@@ -1,45 +1,59 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../App.css'
 import { BsFillPeopleFill } from 'react-icons/bs'
-import { MdLogin } from 'react-icons/md'
+import { MdLogin, MdAdminPanelSettings,MdLogout } from 'react-icons/md'
 import qrCodeImage from '../assets/qrCodeImage.webp'
+
+
 
 export default function Home(){
   return (
     <div className="home_background position-relative">
 
-      <div className="position-absolute top-0 end-0 m-2">
-        <Link to='/host'>
-          <button type="button" className="btn btn-lg all-btn">
+      <div className="position-absolute container-fluid
+       p-2 d-flex justify-content-between nav-background">
+          <NavLink 
+           to='host'
+            style={{color:'white', textDecoration: 'none'}}
+          >
             <BsFillPeopleFill />
             Host
-          </button>
-        </Link>
+          </NavLink>
+          <NavLink 
+           to='admin'
+           style={{color:'white', textDecoration: 'none'}}
+           >
+           <MdAdminPanelSettings />
+            Admin
+          </NavLink>
       </div>
 
-      <div className="position-absolute top-50 end
-      start-50 translate-middle d-flex flex-column justify-content-center align-items-center" >
+      <div className="position-absolute top-50 start-50 translate-middle m-2 p-2" >
+        <div className="d-flex m-4">
         <h3 className="text-center fs-1 text">
-          WELCOME PLEASE SIGN IN HERE 
+          WELCOME TO <span>AMALITECH SERVICES</span> 
         </h3>
-        <Link to='/login'>
-          <button className="all-btn btn btn-lg "> 
-            Visitor <br>
-            </br> Sign In
-            <MdLogin />
+        </div>
+        <div className="d-flex justify-content-around align-content-center  ">
+          <button className="btn btn-outline logIn">
+            <NavLink style={{color:'#E45218', textDecoration: 'none', fontWeight: 'bolder'}} to='login'> 
+                Log In
+                <MdLogin />
+            </NavLink>
           </button>
-        </Link>
+          <button className="btn btn-outline logIn">
+            <NavLink style={{color:'#E45218', textDecoration: 'none', fontWeight: 'bolder'}} to='logout'> 
+                Log Out
+                <MdLogout />
+            </NavLink>
+          </button>
+        </div>
       </div>
-      
-      <button type="button" className="btn btn-lg all-btn"><Link to='/admin'>Admin</Link></button>
-      
 
-      <div className="position-absolute end-0 top-50 ">
-        <h3>Click to scan qrCode for Quick log in</h3>
-        <Link to='/scanner'><img src={qrCodeImage} /></Link>
+      <div className="position-absolute bottom-0">
+        <NavLink to='scanner'><img className="scanner-img" src={qrCodeImage} /></NavLink>
       </div>
-      
       
     </div>
   )
