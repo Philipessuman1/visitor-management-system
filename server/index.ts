@@ -46,16 +46,16 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
 app.use(cors());
 app.use(express.json()); //req.body
 
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static('../client/build'))
-}
+/*if (process.env.NODE_ENV === "production") {
+    app.use(express.static(''))
+}*/
 
 app.use('/visitors', visitorRouter);
 app.use('/admin', adminRouter);
 
 app.get('*', (req, res) => {
     console.log('outer route')
-    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+    res.sendFile(path.join(__dirname, 'frontend\src\pages\Home.tsx'));
 })
 
 app.listen(PORT, () => {
