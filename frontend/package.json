@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@mui/icons-material": "^5.10.14",
+    "axios": "^1.2.0",
     "bootstrap": "^5.2.2",
     "cdbreact": "^1.5.3",
     "qrcode": "^1.5.1",

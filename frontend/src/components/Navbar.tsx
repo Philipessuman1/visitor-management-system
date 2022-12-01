@@ -18,6 +18,10 @@ const Navbar = () => {
         style={{color:'white', textDecoration: 'none'}}>
           Live-Visitors
         </NavLink>
+        <NavLink to='frequentVisitors'
+        style={{color:'white', textDecoration: 'none'}}>
+          Frequent-Visitors
+        </NavLink>
         <NavLink to='all-visitors'
         style={{color:'white', textDecoration: 'none'}}>
           All-Visitors

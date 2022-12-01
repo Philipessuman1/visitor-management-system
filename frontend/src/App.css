@@ -49,3 +49,7 @@
     font-size: large;
     font-weight: bolder;
 }
+.background{
+    background-color: rgba(66, 65, 65,0.8);
+    color: antiquewhite;
+}
