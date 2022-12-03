@@ -8,8 +8,8 @@ router.post('/addvisitor', async (req, res) => {
         res.sendFile('index.html');
     }
     try {
-        const visitorId = await addVisitorToDB(req.body);
-        await sendNotifications(visitorId)
+       // const visitorId = addVisitorToDB(req.body.id);
+        await sendNotifications(req.body.id)
         res.status(201).send("Success")
     } catch (error) {
         console.error(error)
@@ -28,7 +28,7 @@ router.put('/signoutvisitor/:id', async (req, res) => {
 })
 
 router.get('*', (req, res) => {
-    res.sendFile('index.html');
+    res.sendFile(__dirname, 'index.html');
 })
 
 export default router;
