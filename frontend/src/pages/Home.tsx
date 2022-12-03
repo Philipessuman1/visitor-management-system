@@ -35,15 +35,23 @@ export default function Home(){
           WELCOME TO <span>AMALITECH SERVICES</span> 
         </h3>
         </div>
-        <div className="d-flex justify-content-around align-content-center  ">
-          <button className="btn btn-outline logIn">
-            <NavLink style={{color:'#E45218', textDecoration: 'none', fontWeight: 'bolder'}} to='login'> 
+        <div className="d-flex justify-content-around align-content-center m-4 w-50 m-auto  ">
+          <button className="btn btn-filled logIn">
+            <NavLink style={({ isActive }) => ({
+          color: isActive ? '#e45218' : 'white',
+          textDecoration: 'none',
+          fontWeight: '900'
+        })} to='login'> 
                 Log In
                 <MdLogin />
             </NavLink>
           </button>
           <button className="btn btn-outline logIn">
-            <NavLink style={{color:'#E45218', textDecoration: 'none', fontWeight: 'bolder'}} to='logout'> 
+            <NavLink style={({ isActive }) => ({
+          color: isActive ? '#e45218' : 'white',
+          textDecoration: 'none',
+          fontWeight: '900'
+        })} to='logout'> 
                 Log Out
                 <MdLogout />
             </NavLink>

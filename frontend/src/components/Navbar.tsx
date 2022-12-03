@@ -10,24 +10,49 @@ const Navbar = () => {
       <div className=' nav-background d-flex justify-content-between'>
         <div className='d-flex justify-content-between w-75 mx-2 mt-3 mb-0'>
         <NavLink to='/'
-        style={{color:'white', textDecoration: 'none'}}>
+        style={({ isActive }) => ({
+          color: isActive ? '#E45218' : 'white',
+          textDecoration: isActive ? 'none' : 'none',
+          background: isActive ? 'white ' : '#E45218',
+          fontWeight: 'bolder'
+        })}>
           <AiFillHome />
           Home
         </NavLink>
         <NavLink to='live-visitors'
-        style={{color:'white', textDecoration: 'none'}}>
+        style={({ isActive }) => ({
+          color: isActive ? '#E45218' : 'white',
+          textDecoration: isActive ? 'none' : 'none',
+          background: isActive ? 'white ' : '#E45218',
+          fontWeight: 'bolder'
+        })}>
           Live-Visitors
         </NavLink>
-        <NavLink to='frequentVisitors'
-        style={{color:'white', textDecoration: 'none'}}>
-          Frequent-Visitors
+        <NavLink to='daily-visitors'
+        style={({ isActive }) => ({
+          color: isActive ? '#E45218' : 'white',
+          textDecoration: isActive ? 'none' : 'none',
+          background: isActive ? 'white ' : '#E45218',
+          fontWeight: 'bolder'
+        })}>
+          Daily-Visitors
         </NavLink>
         <NavLink to='all-visitors'
-        style={{color:'white', textDecoration: 'none'}}>
+        style={({ isActive }) => ({
+          color: isActive ? '#E45218' : 'white',
+          textDecoration: isActive ? 'none' : 'none',
+          background: isActive ? 'white ' : '#E45218',
+          fontWeight: 'bolder'
+        })}>
           All-Visitors
         </NavLink>
         <NavLink to='employee'
-        style={{color:'white', textDecoration: 'none'}}>
+        style={({ isActive }) => ({
+          color: isActive ? '#E45218' : 'white',
+          textDecoration: isActive ? 'none' : 'none',
+          background: isActive ? 'white ' : '#E45218',
+          fontWeight: 'bolder'
+        })}>
           <GrUserWorker />
           Employees
         </NavLink>

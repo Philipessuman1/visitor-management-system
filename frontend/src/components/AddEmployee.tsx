@@ -43,7 +43,7 @@ const AddEmployee = () => {
 
   return (
     <div className="d-flex">
-      <div className="p-2 m-auto pt-4">
+      <div className="p-2 m-auto pt-4 background">
         <div className="m-2">
           <h1>Add New Employee</h1>
         </div>

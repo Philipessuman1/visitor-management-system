@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import QrcodeGenerator from "../components/QrcodeGenerator";
 import profilepic from '../assets/amalitech_logo2.jpg'
 import { useForm } from 'react-hook-form'
+import { AiFillHome } from 'react-icons/ai';
 
 
 
@@ -29,6 +30,7 @@ export default function Host(){
       <div className='d-flex justify-content-between m-0 mb-0 nav-background w-100'>
         <NavLink to='/' 
         style={{color:'white', textDecoration: 'none',marginLeft:'2rem', marginTop:'1rem'}}>
+          <AiFillHome />
           Home
         </NavLink>
         <div className='d-flex align-items-center justify-content-center mb-0 mt-1 mx-2'>

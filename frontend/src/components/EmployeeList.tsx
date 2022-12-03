@@ -3,8 +3,8 @@ import { AiFillDelete } from 'react-icons/ai'
 
 const EmployeeList = () => {
   return (
-    <div>
-        <table className="table">
+    <div >
+        <table className="table background">
         <thead>
             <tr>
             <th scope="col">id</th>

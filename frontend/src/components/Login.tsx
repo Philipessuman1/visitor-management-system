@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
@@ -20,9 +21,16 @@ const Login = () => {
     formState: { errors }
   } = useForm();
 
-  const onSubmit = (data:{}) => {
+  const OnSubmit = (data:{}) => {
     console.log(data);
-    navigate('/')
+    axios.post('https://jsonplaceholder.typicode.com',data).then(response => {
+      try {
+        console.log(response.data)
+      } catch (error) {
+        console.error(error)
+      }
+    })
+    setTimeout(() => navigate('/'),3000) 
   };
 
   const [selectedOptions, setSelectedOptions] = useState('');
@@ -36,7 +44,7 @@ const Login = () => {
       <>
         <div className="home_background d-flex flex-column justify-content-center
          align-items-center">
-          <form className='container-sm w-50 form-bgColor' onSubmit={handleSubmit(onSubmit)}>
+          <form className='container-sm w-50 form-bgColor' onSubmit={handleSubmit(OnSubmit)}>
           <h2 className='d-flex justify-content-center d-inline'>Please Log In With Your Details</h2>
             <div className="mb-3">
               <label className='form-label'>Name</label>
