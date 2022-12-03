@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select'
+import { toast } from 'react-toastify'
 
 const optionList = [
   { value: "Philip Essuman", label: "Philip Essuman" },
@@ -13,6 +14,7 @@ const optionList = [
 const Login = () => {
 
   const navigate = useNavigate()
+  const notify = () => toast('Log in successful')
 
   const {
     control,
@@ -23,14 +25,15 @@ const Login = () => {
 
   const OnSubmit = (data:{}) => {
     console.log(data);
-    axios.post('https://jsonplaceholder.typicode.com',data).then(response => {
+    axios.post('https://jsonplaceholder.typicode.com/',data).then(response => {
       try {
         console.log(response.data)
       } catch (error) {
         console.error(error)
       }
     })
-    setTimeout(() => navigate('/'),3000) 
+    notify()
+    setTimeout(() => navigate('/'),5000) 
   };
 
   const [selectedOptions, setSelectedOptions] = useState('');

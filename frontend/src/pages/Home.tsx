@@ -7,7 +7,7 @@ import qrCodeImage from '../assets/qrCodeImage.webp'
 
 
 
-export default function Home(){
+export default function Home() {
   return (
     <div className="home_background position-relative">
 

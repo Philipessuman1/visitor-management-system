@@ -17,6 +17,7 @@ const QrcodeGenerator = () => {
 
     const {
       control,
+      reset,
       register,
       handleSubmit,
       formState: { errors }
@@ -24,7 +25,7 @@ const QrcodeGenerator = () => {
   
     const onSubmit = (data:{}) => {
       setUrl(JSON.stringify(data))
-      
+      reset()
     };
 
   return (

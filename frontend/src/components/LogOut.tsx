@@ -1,6 +1,10 @@
 import React from 'react'
+import { useNavigate } from 'react-router'
+import { toast } from 'react-toastify'
 
-const LogOut = () => {
+const LogOut:React.FC = () => {
+    const navigate = useNavigate()
+    const notify = () => toast('log out successful')
   return (
     <div className='home_background d-flex flex-column justify-content-center
     align-items-center'>

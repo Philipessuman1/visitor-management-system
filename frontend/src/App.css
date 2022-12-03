@@ -59,3 +59,7 @@
     height: 12rem;
     margin: auto;
 }
+.qrReaderSize {
+    width: 7rem;
+    height: 7rem;
+}
