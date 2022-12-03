@@ -16,6 +16,8 @@ import AddEmployee from './components/AddEmployee'
 import EmployeeList from './components/EmployeeList'
 import DailyVisitors from './components/DailyVisitors'
 import LogOut from './components/LogOut'
+import Protected from './utils/Protected';
+import SignIn from './components/SignIn';
 
 
 const App = () => {
@@ -25,7 +27,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home/>} ></Route>
         <Route path='/host' element={<Host/>}    />
-        <Route path='/admin' element={<Admin/>}>
+        <Route path='/admin' element={<Protected><Admin/></Protected>}>
           <Route index element={<LiveVisitors />} />
           <Route path='employee' element={<Employee/>}>
             <Route index element={<EmployeeList />} />
@@ -39,6 +41,7 @@ const App = () => {
         <Route path='/scanner' element={<QrcodeReader />} />
         <Route path='/login' element={<Login />} />
         <Route path='/logout' element={<LogOut />} />
+        <Route path='/signIn' element={<SignIn/>} />
       </Routes>
       <ToastContainer />
     </div>

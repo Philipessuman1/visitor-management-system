@@ -9,7 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@mui/icons-material": "^5.10.14",
+    "@mui/icons-material": "^5.10.16",
+    "@mui/material": "^5.10.16",
     "axios": "^1.2.0",
     "bootstrap": "^5.2.2",
     "cdbreact": "^1.5.3",
