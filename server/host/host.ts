@@ -1,22 +1,22 @@
 // Email and SMS functionality
 import nodemailer from 'nodemailer';
-import {pool} from '../db';
+const pool = require('../db').pool;
 import 'dotenv/config';
-require('dotenv').config({ path: '../.env'});
+require('dotenv').config({ path: 'server/.env'});
 import axios from 'axios';
 
 const getReceiverDetails = (id: number) => {
     return pool.query(`
-        SELECT hosts.host_name, hosts.email AS host_email, hosts.phone AS host_phone, visitors.visitor_name AS visitor_name, visitors.email AS visitor_email, visitors.phone AS visitor_phone 
+        SELECT hosts.host_name AS host_name, hosts.email AS host_email, hosts.phone AS host_phone, visitors.visitor_name AS visitor_name, visitors.email AS visitor_email, visitors.phone AS visitor_phone 
         FROM hosts
         JOIN visitors
         ON hosts.id = visitors.host_id
         WHERE visitors.id = $1
         `, [id])
-            .then(data => {
+            .then((data: { rows: any[]; }) => {
                 return data.rows[0]
             })
-            .catch(err => {
+            .catch((err: { status: any; message: any; }) => {
                 throw {status: err?.status || 500, message: err.message }
             })
 }
@@ -41,9 +41,9 @@ let mailOptions = {
     attachments: [{filename:"qr_code.png", path: '../qr_code.png'}]
 }
 
-const visitorNotificationMessage = (receiver_name: string) => {
+const visitorNotificationMessage = (visitor_name: string) => {
     return  `
-    Dear ${receiver_name},
+    Dear ${visitor_name},
 
     Your meeting has been scheduled and your host has been notified.
 
@@ -54,9 +54,9 @@ const visitorNotificationMessage = (receiver_name: string) => {
     Regards,
 ` };
 
-const hostNotificationMessage = (receiver_name: string, visitor_name: string) => {
+const hostNotificationMessage = (host_name: string, visitor_name: string) => {
     return `
-    Dear ${receiver_name},
+    Dear ${host_name},
 
     Your visitor ${visitor_name} has arrived and waiting for you.
 

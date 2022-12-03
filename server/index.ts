@@ -7,7 +7,6 @@ import swaggerJsDoc from 'swagger-jsdoc';
 import swaggerUI from 'swagger-ui-express';
 import * as dotenv from "dotenv";
 dotenv.config();
-import path from 'path';
 
 const swaggerOptions = {
     swaggerDefinition: {
@@ -46,18 +45,17 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
 app.use(cors());
 app.use(express.json()); //req.body
 
-/*if (process.env.NODE_ENV === "production") {
-    app.use(express.static(''))
-}*/
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static('../client/build'))
+}
 
-app.use('/visitors', visitorRouter);
-app.use('/admin', adminRouter);
+app.use(visitorRouter);
+app.use(adminRouter);
 
-app.get('*', (req, res) => {
+/*app.get('*', (req, res) => {
     console.log('outer route')
-    res.sendFile(path.join(__dirname, 'frontend\src\pages\Home.tsx'));
-})
+    //res.sendFile(path.join(__dirname, '.'));
+})*/
 
 app.listen(PORT, () => {
-    console.log(`Server is listening on port ${PORT}`)
-})
+    console.log(`Server is listening on port ${PORT}`)});
