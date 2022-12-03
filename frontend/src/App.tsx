@@ -17,7 +17,7 @@ import EmployeeList from './components/EmployeeList'
 import DailyVisitors from './components/DailyVisitors'
 import LogOut from './components/LogOut'
 import Protected from './utils/Protected';
-import SignIn from './components/SignIn';
+import AdminSignIn from './components/AdminSignIn';
 
 
 const App = () => {
@@ -41,7 +41,7 @@ const App = () => {
         <Route path='/scanner' element={<QrcodeReader />} />
         <Route path='/login' element={<Login />} />
         <Route path='/logout' element={<LogOut />} />
-        <Route path='/signIn' element={<SignIn/>} />
+        <Route path='/signIn' element={<AdminSignIn/>} />
       </Routes>
       <ToastContainer />
     </div>
