@@ -1,18 +1,18 @@
 import React from 'react'
+import { AiFillDelete } from 'react-icons/ai'
 
-const LiveVisitors = () => {
+const EmployeeList = () => {
   return (
-    <div>
-        <table className="table w-75 m-auto background mt-3">
+    <div >
+        <table className="table background">
         <thead>
             <tr>
             <th scope="col">id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Company</th>
+            <th scope="col">name</th>
+            <th scope="col">email</th>
+            <th scope="col">Position</th>
             <th scope="col">Contact</th>
-            <th scope="col">Host</th>
-            <th scope="col">Log In time</th>
+            <th scope="col">Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -20,10 +20,9 @@ const LiveVisitors = () => {
             <th scope="row">1</th>
             <td>Mark Jacobs</td>
             <td>markjocobs@gmail.com</td>
-            <td>Absa Bank</td>
+            <td>Junior developer</td>
             <td>0203148244</td>
-            <td>Philip</td>
-            <td>1:59pm</td>
+            <td><AiFillDelete /></td>
             </tr>
         </tbody>
         </table>
@@ -31,4 +30,4 @@ const LiveVisitors = () => {
   )
 }
 
-export default LiveVisitors
+export default EmployeeList

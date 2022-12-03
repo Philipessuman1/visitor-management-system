@@ -10,8 +10,6 @@ const QrcodeGenerator = () => {
     const GenerateQRCode = () => {
         QRCode.toDataURL(url, (err, url) => {
             if (err) return console.error(err)
-
-            console.log(url)
             setQrcode(url)
         })
     }
@@ -19,6 +17,7 @@ const QrcodeGenerator = () => {
 
     const {
       control,
+      reset,
       register,
       handleSubmit,
       formState: { errors }
@@ -26,7 +25,7 @@ const QrcodeGenerator = () => {
   
     const onSubmit = (data:{}) => {
       setUrl(JSON.stringify(data))
-      
+      reset()
     };
 
   return (
@@ -113,12 +112,12 @@ const QrcodeGenerator = () => {
             </div>
             <button className='btn btn-success m-auto' type="submit">Submit</button>
             </form>
-            <div className='w-50'>
+            <div className='w-50 d-flex flex-column'>
                 <h3>Click Generate to generate QrCode for your guest</h3>
-                <button onClick={GenerateQRCode}>Generate</button>
+                <button onClick={GenerateQRCode} className='btn btn-primary w-50 m-auto'>Generate</button>
                 {qrcode && <>
-                    <img src={qrcode}   />
-                    <a href={qrcode} download='qrcode.png'>Download</a>
+                    <img src={qrcode} className='qrImage'  />
+                    <a href={qrcode} download='qrcode.png' className='btn btn-success w-50 m-auto'>Download</a>
                 </>}
             </div>
         
