@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form'
 const QrcodeGenerator = () => {
     const [url, setUrl] = useState('')
     const [qrcode, setQrcode] = useState('')
+    let username = 'philip'
 
     const GenerateQRCode = () => {
         QRCode.toDataURL(url, (err, url) => {
@@ -25,6 +26,7 @@ const QrcodeGenerator = () => {
   
     const onSubmit = (data:{}) => {
       setUrl(JSON.stringify(data))
+      console.log(JSON.stringify(data))
       reset()
     };
 
@@ -110,6 +112,14 @@ const QrcodeGenerator = () => {
                 </p>
               )}
             </div>
+            <input  
+             type='host'
+             value={username}
+             className='d-none'
+             {...register("host", {
+            
+            })}
+             />
             <button className='btn btn-success m-auto' type="submit">Submit</button>
             </form>
             <div className='w-50 d-flex flex-column'>

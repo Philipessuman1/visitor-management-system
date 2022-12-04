@@ -1,12 +1,37 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 
 const AllVisitors = () => {
+  const [allVisitors,setAllVisitors] = useState([])
+  const [loading, setLoading] = useState(true)
+  
+  useEffect(() => {
+    const fetchData = async() => {
+      setLoading(true)
+      try {
+        const response = await axios.get('')
+        setAllVisitors(response.data)
+      } catch (error) {
+        console.log(error)
+      }
+      setLoading(false)
+    }
+    fetchData()
+  },[])
+
+  interface Visitor {
+    name:string;
+    email:string;
+    company:string;
+    phone:string;
+    host:string;
+  }
+
   return (
     <div>
            <table className="table background">
         <thead>
             <tr>
-            {/* <th scope="col">id</th> */}
             <th scope="col">Name</th>
             <th scope="col">Email</th>
             <th scope="col">Company</th>
@@ -17,19 +42,21 @@ const AllVisitors = () => {
             <th scope="col">Date</th>
             </tr>
         </thead>
+        {!loading && (
         <tbody>
+          {allVisitors.map((visitor:Visitor)=>(
             <tr>
-            {/* <th scope="row">1</th> */}
-            <td>Mark Jacobs</td>
-            <td>markjocobs@gmail.com</td>
-            <td>Absa Bank</td>
-            <td>0203148244</td>
-            <td>Philip Essuman</td>
-            <td>1:59pm</td>
-            <td>2:15pm</td>
-            <td>01/12/22</td>
+            <td>{visitor.name}</td>
+            <td>{visitor.email}</td>
+            <td>{visitor.company}</td>
+            <td>{visitor.phone}</td>
+            <td>{visitor.host}</td>
+            <td>{}</td>
+            <td>{}</td>
+            <td>{}</td>
             </tr>
-        </tbody>
+            ))}
+        </tbody> )}
         </table>
     </div>
   )

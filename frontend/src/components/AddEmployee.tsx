@@ -6,7 +6,7 @@ const AddEmployee = () => {
   const [employee, setEmployee] = useState({
     id: "",
     Name: "",
-    emailId: "",
+    email: "",
     position:"",
     contact: ""
   });
@@ -18,7 +18,7 @@ const AddEmployee = () => {
     setEmployee({ ...employee, [e.target.name]: value });
   };
 
-  const saveEmployee = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const saveEmployee = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     EmployeeService.saveEmployee(employee)
       .then((response) => {
@@ -30,12 +30,12 @@ const AddEmployee = () => {
       });
   };
 
-  const reset = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const reset = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     setEmployee({
       id: "",
       Name: "",
-      emailId: "",
+      email: "",
       position:"",
       contact:""
     });
@@ -64,8 +64,8 @@ const AddEmployee = () => {
           </label>
           <input
             type="text"
-            name="emailId"
-            value={employee.emailId}
+            name="email"
+            value={employee.email}
             onChange={(e) => handleChange(e)}
             className="form-control" />
         </div>

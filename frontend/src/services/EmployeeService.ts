@@ -1,25 +1,22 @@
 import axios from "axios";
 
+
 const EMPLOYEE_API_BASE_URL = "/admin/employees";
 
 class EmployeeService {
-  saveEmployee(employee:any) {
+  saveEmployee(employee: { id: string; Name: string; emailId: string; position: string; contact: string; }) {
     return axios.post('./hosts', employee);
   }
 
   getEmployees() {
-    return axios.get(EMPLOYEE_API_BASE_URL);
+    return axios.get('/hosts');
   }
 
-  deleteEmployee(id:any) {
-    return axios.delete(EMPLOYEE_API_BASE_URL + "/" + id);
+  deleteEmployee(id: string) {
+    return axios.delete('/deletehost/:id');
   }
 
-  getEmployeeById(id:any) {
-    return axios.get(EMPLOYEE_API_BASE_URL + "/" + id);
-  }
-
-  updateEmployee(employee:any, id:any) {
+  updateEmployee(employee: any, id: string) {
     return axios.put(EMPLOYEE_API_BASE_URL + "/" + id, employee);
   }
 }

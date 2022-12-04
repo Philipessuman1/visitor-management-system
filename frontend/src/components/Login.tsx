@@ -15,6 +15,7 @@ const Login = () => {
 
   const navigate = useNavigate()
   const notify = () => toast('Log in successful')
+  const failure = () => toast('Log in Unsuccessful')
 
   const {
     control,
@@ -25,14 +26,16 @@ const Login = () => {
 
   const OnSubmit = (data:{}) => {
     console.log(data);
-    axios.post('https://jsonplaceholder.typicode.com/',data).then(response => {
+    axios.post('/addvisitor',data).then(response => {
       try {
         console.log(response.data)
+        notify()
       } catch (error) {
         console.error(error)
+        failure()
       }
     })
-    notify()
+    
     setTimeout(() => navigate('/'),5000) 
   };
 
