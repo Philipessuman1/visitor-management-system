@@ -3,25 +3,8 @@ import {Request, Response} from 'express';
 import Admin from '../Admin.type';
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
-import { resourceLimits } from 'worker_threads';
 dotenv.config();
 
-
-const hashPassword = (password: string) => {
-    const salt = parseInt(process.env.SALT as string, 10);
-    return bcrypt.hashSync(`${password}${process.env.BCRYPT_PASSWORD}`, salt)};
-
-export const addAdmin = async (body: { email: string; password: string; }) => {
-    try {
-        pool.query(
-            "INSERT INTO admins (email, password) VALUES ($1, $2)", [body.email, hashPassword(body.password)]
-        );
-    
-        console.log("Added new admin");
-    } catch (err) {
-        console.log(err);
-    }
-}
 
 export const addHost = async (body: { host_name: string; department: string; email: string; phone: any; }) => {
     try {
@@ -79,7 +62,7 @@ export const deleteHost = async (body: { id: number; }) => {
 };
 
 
-export const loginAdmin = async(email:string, password: string): Promise<Admin | null> =>{
+/*export const loginAdmin = async(email:string, password: string): Promise<Admin | null> =>{
    
     try{
         const result = await pool.query(
@@ -100,7 +83,7 @@ export const loginAdmin = async(email:string, password: string): Promise<Admin |
     } catch(err) {
         throw new Error(`Unable to login: ${(err as Error).message}`);
     }
-  };
+  };*/
 /*export const getAdminPassword = async (email: string):Promise<Admin | null> => {
     try {
         return pool.query(
@@ -121,7 +104,7 @@ export const loginAdmin = async(email:string, password: string): Promise<Admin |
 };*/
 export const getAllEmployees = async () => {
     return pool.query(
-        `SELECT * FROM hosts`
+        'SELECT * FROM hosts'
     )
     .then((res: { rows: any; }) => {
         return res.rows
@@ -133,7 +116,7 @@ export const getAllEmployees = async () => {
 
 export const getVisitors = async () => {
     return pool.query(
-        `SELECT * FROM visitors`
+       'SELECT * FROM visitors'
     )
     .then((res: { rows: any; }) => {
         return res.rows
@@ -158,7 +141,7 @@ export const getDailyVisits = async () => {
     })
 };
 
-export const getBusiestHosts = async () => {
+/*export const getBusiestHosts = async () => {
     return pool.query(
         `SELECT hosts.host_name, count(visitors.host_id)
          FROM hosts
@@ -173,4 +156,4 @@ export const getBusiestHosts = async () => {
     .catch((err: { status: any; message: any; }) => {
         throw {status: err?.status || 500, message: err.message}
     })
-};
+};*/

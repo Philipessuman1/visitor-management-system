@@ -1,77 +1,79 @@
 import express from 'express';
 const router = express.Router();
-//import bcrypt from 'bcrypt';
+const pool = require( '../db').pool;
+import bcrypt from 'bcrypt';
 require('dotenv').config({ path: '../../.env'});
-import jwt from 'jsonwebtoken';
 import { getAllEmployees,
-    addAdmin,
-    //getAdminPassword,
-    loginAdmin,
     getVisitors,
     getDailyVisits,
-    getBusiestHosts,
     addHost,
     modifyHost,
     deleteHost,
     updateVisitorsforDelete } from './adminService';
 import path from 'path';
-import { Request, Response } from "express";
+import { jwtGenerator } from '../utils/jwtGenerator';
+const validInfo = require('../utils/validInfo');
+import{authorize} from "../utils/authorizationMiddleware";
 
-
-router.post('/newAdmin', async (req:Request, res:Response) => {
-    try {
-        let email = req.body.email
-        let password = req.body.password
-        const admin = { email, password }
-    if(email === null && password === null){
-        console.log('Email and password required')
-    } else {
-        await addAdmin(admin);
-        res.status(201).send("Successful")
-    }
-    } catch (err) {
-        console.log(err)
-    }
-})
-
-router.post('/adminlogin', async (req, res, next) => {
+router.post("/newAdmin",validInfo, async (req, res) => {
     try{
         const {email, password} = req.body;
-        const admin = await loginAdmin(email, password);
-        const token = jwt.sign({admin}, process.env.TOKEN_SECRET as unknown as string);
-        if(!admin){
-            return res.status(401).json({
-                status:'error', message: 'Email or Password Invalid'
-            });
+
+        const admin = await pool.query('SELECT * FROM admins WHERE email = $1',[email]);
+
+        if(admin.rows.length > 0){
+            return res.status(401).json("Admin already exist!");
         }
-        return res.json({
-            status: 'success',
-            data:{...admin, token},
-            message: 'Admin login successful'
-        });
+
+        const salt = await bcrypt.genSalt(process.env.SALT_ROUNDS as unknown as number);
+        const bcryptPassword = await bcrypt.hash(password, salt); 
+
+        let newAdmin = await pool.query(
+            'INSERT INTO admins (email, password) VALUES ($1, $2) RETURNING *',[email, bcryptPassword]
+        );
+
+        const jwtToken = jwtGenerator(newAdmin.rows[0].id);
+
+        return res.json({jwtToken});
     } catch(err) {
-        return next(err);
+        console.log(err);
+        res.status(500).send("Server Error");
     }
 });
-    /*const password = await getAdminPassword(req.body.email)
+
+router.post('/adminlogin',validInfo, async (req, res) => {
+    const {email, password} = req.body;
     try {
-        if (await bcrypt.compare(req.body.password, password)) {
-            
-            const user = { name: req.body.email}
-            
-           const accessToken = jwt.sign({user}, process.env.ACCESS_TOKEN_SECRET as string)
-           
-            console.log("login success")
-           res.json({accessToken: accessToken})
-           
-        } else {
-            
-            res.status(401).send("Invalid credentials")
+        const admin = await pool.query('SELECT * FROM admins WHERE email = $1', [email]);
+
+        if(admin.rows.length === 0){
+            return res.status(401).json("Email or Password Incorrect");
         }
+
+        const validPassword = await bcrypt.compare(password, admin.rows[0].password);
+
+        if(!validPassword){
+            return res.status(401).json("Email or Password Incorrect");
+        }
+
+        const token = jwtGenerator(admin.rows[0].id);
+        res.json({token});
+
     } catch (err) {
         console.log(err);
+        res.status(500).send("Server Error");
     }
-})*/
+});
+
+router.get('/verify', authorize, async(req, res) => {
+    try {
+      res.json(true);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send("Server error");
+    }
+  });
+
 
 router.get('/hosts', async (req, res) => {
     try {
@@ -121,14 +123,14 @@ router.get('/dailyvisits', async (req, res) => {
     }
 })
 
-router.get('/busyHost', async (req, res) => {
+/*router.get('/busyHost', async (req, res) => {
     try {
         const busiestHosts = await getBusiestHosts();
         res.status(200).json(busiestHosts)
     } catch (error) {
         res.status(500).send({ status: "FAILED", data: {error}})
     }
-})
+})*/
 
 router.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../index.html'));

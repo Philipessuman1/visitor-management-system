@@ -1,5 +1,4 @@
 import express from 'express';
-import jwt from 'jsonwebtoken';
 import cors from 'cors';
 import visitorRouter from './visitors/visitorRouter';
 import adminRouter from './admin/adminRouter';
@@ -25,20 +24,7 @@ const swaggerDocs = swaggerJsDoc(swaggerOptions)as any;
 
 const app = express();
 const PORT = process.env.PORT || 4000;
-const accesstoken = process.env.ACCESS_TOKEN_SECRET;
 
-
-function authenticateToken(req: { headers: { [x: string]: any; }; user: string | jwt.JwtPayload | undefined; }, res: { sendStatus: (arg0: number) => void; }, next: () => void){
-    const authHeader = req.headers['authorization']
-    const token = authHeader && authHeader.split(' ')[1]
-    if (token == null) return res.sendStatus(401)
-
-    jwt.verify(token, accesstoken as string, (err: any, user: string | jwt.JwtPayload | undefined) => {
-        if(err) return res.sendStatus(403)
-        req.user = user
-        next();
-    });
-};
 
 //middleware
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
@@ -47,10 +33,11 @@ app.use(express.json()); //req.body
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static('../client/build'))
-}
+};
 
 app.use(visitorRouter);
 app.use(adminRouter);
+
 
 /*app.get('*', (req, res) => {
     console.log('outer route')
