@@ -1,7 +1,9 @@
+import axios from 'axios';
 import React, { useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select'
+import { toast } from 'react-toastify'
 
 const optionList = [
   { value: "Philip Essuman", label: "Philip Essuman" },
@@ -12,6 +14,8 @@ const optionList = [
 const Login = () => {
 
   const navigate = useNavigate()
+  const notify = () => toast('Log in successful')
+  const failure = () => toast('Log in Unsuccessful')
 
   const {
     control,
@@ -20,9 +24,19 @@ const Login = () => {
     formState: { errors }
   } = useForm();
 
-  const onSubmit = (data:{}) => {
+  const OnSubmit = (data:{}) => {
     console.log(data);
-    navigate('/')
+    axios.post('/addvisitor',data).then(response => {
+      try {
+        console.log(response.data)
+        notify()
+      } catch (error) {
+        console.error(error)
+        failure()
+      }
+    })
+    
+    setTimeout(() => navigate('/'),5000) 
   };
 
   const [selectedOptions, setSelectedOptions] = useState('');
@@ -36,7 +50,7 @@ const Login = () => {
       <>
         <div className="home_background d-flex flex-column justify-content-center
          align-items-center">
-          <form className='container-sm w-50 form-bgColor' onSubmit={handleSubmit(onSubmit)}>
+          <form className='container-sm w-50 form-bgColor' onSubmit={handleSubmit(OnSubmit)}>
           <h2 className='d-flex justify-content-center d-inline'>Please Log In With Your Details</h2>
             <div className="mb-3">
               <label className='form-label'>Name</label>

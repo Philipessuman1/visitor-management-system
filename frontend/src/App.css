@@ -17,7 +17,8 @@
     border: 2px solid white;
 }
 .logIn:hover{
-    background-color: white;
+    background-color:#E45218 ;
+    
 }
 .errorMessage{
     color: red;
@@ -26,7 +27,7 @@
     background-color: #E45218;
 }
 .form-bgColor{
-    background-color: rgb(66, 65, 65);
+    background-color: rgba(66, 65, 65, 0.9);
     border-radius: 2rem;
 }
 .profile-pic{
@@ -48,4 +49,17 @@
     color: antiquewhite;
     font-size: large;
     font-weight: bolder;
+}
+.background{
+    background-color: rgba(66, 65, 65,0.8);
+    color: antiquewhite;
+}
+.qrImage {
+    width: 12rem;
+    height: 12rem;
+    margin: auto;
+}
+.qrReaderSize {
+    width: 7rem;
+    height: 7rem;
 }
