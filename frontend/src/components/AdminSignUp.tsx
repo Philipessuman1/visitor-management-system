@@ -33,7 +33,7 @@ function checkPassword(form: { password: { value: any; }; confirmPassword: { val
 
 const handleSubmit = (e: { preventDefault: () => void; }) => {
 	e.preventDefault();
-    checkPassword()
+    
 	axios.post('http://localhost:4000/newadmin', {
 			email: values.email,
 			password: values.password,
