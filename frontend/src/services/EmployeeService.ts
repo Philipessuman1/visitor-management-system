@@ -4,15 +4,15 @@ const EMPLOYEE_API_BASE_URL = "http://localhost:4000";
 
 class EmployeeService {
   saveEmployee(employee: { id: string; Name: string; email: string; position: string; contact: string; }) {
-    return axios.post("http://localhost:4000/addhost", employee);
+    return axios.post("/addhost", employee);
   }
 
   getEmployees() {
-    return axios.get("http://localhost:4000/hosts");
+    return axios.get("/hosts");
   }
 
   deleteEmployee(id: string) {
-    return axios.delete("http://localhost:4000/deletehost/:id");
+    return axios.delete("/deletehost/:id");
   }
 
   // updateEmployee(employee: any, id: string) {

@@ -16,7 +16,7 @@ const failure = () => toast('unsuccesful')
 
 const handleSubmit = (e: { preventDefault: () => void; }) => {
 	e.preventDefault();
-	axios.post('http://localhost:4000/adminlogin', {
+	axios.post('/adminlogin', {
 			email: values.email,
 			password: values.password,
 		})

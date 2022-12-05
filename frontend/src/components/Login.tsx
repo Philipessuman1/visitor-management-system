@@ -25,7 +25,7 @@ const Login = () => {
   } = useForm();
 
   const OnSubmit = (data:{}) => {
-    axios.post('http://localhost:4000 /addvisitor',data).then(response => {
+    axios.post('/addvisitor',data).then(response => {
       try {
         console.log(data)
         notify()
