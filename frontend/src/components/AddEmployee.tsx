@@ -1,41 +1,46 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import EmployeeService from "../services/EmployeeService";
 
 const AddEmployee = () => {
   const [employee, setEmployee] = useState({
     id: "",
     Name: "",
-    emailId: "",
+    email: "",
     position:"",
     contact: ""
   });
 
   const navigate = useNavigate();
+  const success = () => toast('employee added', {autoClose:2000})
+  const failure = () => toast('Failed to add', {autoClose: 2000})
 
   const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setEmployee({ ...employee, [e.target.name]: value });
   };
 
-  const saveEmployee = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const saveEmployee = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     EmployeeService.saveEmployee(employee)
       .then((response) => {
-        console.log(response);
+        // console.log(response);
+        success()
         navigate("/employeeList");
       })
       .catch((error) => {
         console.log(error);
+        failure()
       });
   };
 
-  const reset = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const reset = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     setEmployee({
       id: "",
       Name: "",
-      emailId: "",
+      email: "",
       position:"",
       contact:""
     });
@@ -55,6 +60,7 @@ const AddEmployee = () => {
             type="text"
             name="Name"
             value={employee.Name}
+            required
             onChange={(e) => handleChange(e)}
             className="form-control" />
         </div>
@@ -64,8 +70,8 @@ const AddEmployee = () => {
           </label>
           <input
             type="text"
-            name="emailId"
-            value={employee.emailId}
+            name="email"
+            value={employee.email}
             onChange={(e) => handleChange(e)}
             className="form-control" />
         </div>

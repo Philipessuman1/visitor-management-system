@@ -15,6 +15,7 @@ const Login = () => {
 
   const navigate = useNavigate()
   const notify = () => toast('Log in successful')
+  const failure = () => toast('Log in Unsuccessful')
 
   const {
     control,
@@ -24,24 +25,20 @@ const Login = () => {
   } = useForm();
 
   const OnSubmit = (data:{}) => {
-    console.log(data);
-    axios.post('https://jsonplaceholder.typicode.com/',data).then(response => {
+    axios.post('/addvisitor',data).then(response => {
       try {
-        console.log(response.data)
+        console.log(data)
+        notify()
       } catch (error) {
-        console.error(error)
+        console.log(error)
+        failure()
       }
     })
-    notify()
+    
     setTimeout(() => navigate('/'),5000) 
   };
 
   const [selectedOptions, setSelectedOptions] = useState('');
-
-  // function handleSelect(data:any) {
-  //   setSelectedOptions(data);
-  //   console.log(data)
-  // }
 
   return (
       <>

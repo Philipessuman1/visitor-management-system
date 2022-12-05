@@ -10,14 +10,31 @@ const AdminSignIn = () => {
 const [values, setValues] = useState({
 	email: "",
 	password: "",
+    confirmPassword:""
 });
 const navigate = useNavigate()
 const notify = () => toast('sign in successful')
 const failure = () => toast('unsuccesful')
 
+function checkPassword(form: { password: { value: any; }; confirmPassword: { value: any; }; }) {
+    // 👇 get passwords from the field using their name attribute
+    const password = form.password.value;
+    const confirmPassword = form.confirmPassword.value;
+
+    // 👇 check if both match using if-else condition
+    if (password.value != confirmPassword.value) {
+      alert("Error! Password did not match.");
+      return false;
+    } else {
+      alert("Password Match. Congratulations!");
+      return true;
+    }
+  }
+
 const handleSubmit = (e: { preventDefault: () => void; }) => {
 	e.preventDefault();
-	axios.post('http://localhost:4000/adminlogin', {
+    checkPassword()
+	axios.post('http://localhost:4000/newadmin', {
 			email: values.email,
 			password: values.password,
 		})
@@ -39,8 +56,8 @@ const handleSubmit = (e: { preventDefault: () => void; }) => {
 		 <form className='w-25 d-flex justify-content-center align-items-center 
 		 flex-column background position-absolute translate-middle-x start-50 '
 		  onSubmit={handleSubmit}>
-			<h4>Welcome!</h4>
-			<h6 className='mb-4'>Sign In with Your Details</h6>
+			<h4>Hello!</h4>
+			<h6 className='mb-4'>Sign Up with Your Details</h6>
 				<div>
 					<label>Email</label>
 					   <input
@@ -60,13 +77,21 @@ const handleSubmit = (e: { preventDefault: () => void; }) => {
 						required
 					    onChange={(e) => setValues({ ...values, password: e.target.value })}
 						/>
-						<p className='mt-2 mb-0'>Dont have account? Sign up <a className='text-decoration-none' 
-						href='/signUp'>here</a></p>
-
+				</div>
+				<div>
+					<label className='form label mt-2'>Confirm Password</label>
+					<input
+						className='form-control mt-2'
+						type= "password"
+						placeholder="Password"
+						required
+					    onChange={(e) => setValues({ ...values, confirmPassword: e.target.value })}
+						/>
+                        {}
 				</div>
 				<div className='d-flex flex-row justify-content-between'>
 				<button type="submit" className='mt-4 btn btn-success' >
-						Sign In
+						Sign Up
 				</button>
 				<button className='btn btn-danger mt-4' onClick={() => navigate('/')}>Back</button>
 				</div>
