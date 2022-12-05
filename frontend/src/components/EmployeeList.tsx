@@ -11,7 +11,7 @@ const EmployeeList = () => {
     contact: string | number | null;
   }
 
-  const [employees,setEmployees] = useState([])
+const [employees,setEmployees] = useState<Employee[]>([])
   const [loading, setLoading] = useState(true)
   
   useEffect(() => {

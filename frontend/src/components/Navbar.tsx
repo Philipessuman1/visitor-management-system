@@ -19,7 +19,7 @@ const Navbar = () => {
           <AiFillHome />
           Home
         </NavLink>
-        <NavLink to='live-visitors'
+        {/* <NavLink to='live-visitors'
         style={({ isActive }) => ({
           color: isActive ? '#E45218' : 'white',
           textDecoration: isActive ? 'none' : 'none',
@@ -27,15 +27,15 @@ const Navbar = () => {
           fontWeight: 'bolder'
         })}>
           Live-Visitors
-        </NavLink>
-        <NavLink to='daily-visitors'
+        </NavLink> */}
+        <NavLink to='daily-visits'
         style={({ isActive }) => ({
           color: isActive ? '#E45218' : 'white',
           textDecoration: isActive ? 'none' : 'none',
           background: isActive ? 'white ' : '#E45218',
           fontWeight: 'bolder'
         })}>
-          Daily-Visitors
+          Daily-Visits
         </NavLink>
         <NavLink to='all-visitors'
         style={({ isActive }) => ({

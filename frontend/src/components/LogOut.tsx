@@ -1,11 +1,18 @@
 import axios from 'axios'
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { toast } from 'react-toastify'
+import LiveVisitors from './LiveVisitors'
 
 const LogOut:React.FC = () => {
     const navigate = useNavigate()
     const notify = () => toast('log out successful')
+    const [searchInput, setSearchInput] = useState("");
+
+    const handleChange = (e: { preventDefault: () => void; target: { value: any } }) => {
+      e.preventDefault();
+      setSearchInput(e.target.value);
+    };
 
     const handleLogout = () => {
       axios.delete('/signoutvisitor/:id').then(response => console.log(response))
@@ -24,9 +31,11 @@ const LogOut:React.FC = () => {
         <form className='d-flex flex-column  w-50' onSubmit={handleSubmit}>
             <label className='form-label fw-bold'>Name</label>
             <input  
-                type='text'
+                type='search'
                 placeholder='Enter your name '
                 className='form-control mb-3 '
+                onChange={handleChange}
+                value={searchInput}
             />
         <div className='d-flex  '>
             <button className='btn btn-danger m-3  ' onClick={() => handleLogout()}>Log Out</button>
