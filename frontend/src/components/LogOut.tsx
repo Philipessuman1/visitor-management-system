@@ -15,13 +15,13 @@ const LogOut:React.FC = () => {
     };
 
     const handleLogout = () => {
-      axios.delete('http://localhost:4000/signoutvisitor/:id').then(response => console.log(response))
+      axios.delete('/signoutvisitor/:id').then(response => console.log(response))
       .catch((err)=> console.log(err))
       navigate('/')
     }
 
     const handleSubmit = () => {
-      axios.delete('http://localhost:4000/signoutvisitor/id')
+      axios.delete('/signoutvisitor/id')
     }
 
   return (
