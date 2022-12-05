@@ -4,6 +4,7 @@ import '../App.css'
 import { BsFillPeopleFill } from 'react-icons/bs'
 import { MdLogin, MdAdminPanelSettings,MdLogout } from 'react-icons/md'
 import qrCodeImage from '../assets/qrCodeImage.webp'
+import React from "react";
 
 
 
