@@ -15,21 +15,15 @@ const LogOut:React.FC = () => {
       e.preventDefault();
       setSearchInput(e.target.value);
     };
-    
-    if (searchInput.length > 0) {
-        visitors.filter((visitor) => {
-        return visitor.name.match(searchInput);
-    });
-    }
 
     const handleLogout = () => {
-      axios.delete('/signoutvisitor/:id').then(response => console.log(response))
+      axios.delete('http://localhost:4000/signoutvisitor/:id').then(response => console.log(response))
       .catch((err)=> console.log(err))
       navigate('/')
     }
 
     const handleSubmit = () => {
-      axios.delete('/signoutvisitor/id')
+      axios.delete('http://localhost:4000/signoutvisitor/id')
     }
 
   return (
