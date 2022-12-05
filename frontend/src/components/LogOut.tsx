@@ -9,8 +9,6 @@ const LogOut:React.FC = () => {
     const notify = () => toast('log out successful')
     const [searchInput, setSearchInput] = useState("");
 
-  
-
     const handleChange = (e: { preventDefault: () => void; target: { value: any } }) => {
       e.preventDefault();
       setSearchInput(e.target.value);
