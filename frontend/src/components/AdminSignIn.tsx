@@ -4,7 +4,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 
-
 const AdminSignIn = () => {
 
 const [values, setValues] = useState({
@@ -32,12 +31,12 @@ const handleSubmit = (e: { preventDefault: () => void; }) => {
 		});
 };
 
-
 	return (
 		<div className='home_background h-100vh d-flex justify-content-center 
 		align-items-center position-relative'>
 		 <form className='w-25 d-flex justify-content-center align-items-center 
 		 flex-column background position-absolute translate-middle-x start-50 '
+
 		  onSubmit={handleSubmit}>
 			<h4>Welcome!</h4>
 			<h6 className='mb-4'>Sign In with Your Details</h6>
@@ -62,7 +61,6 @@ const handleSubmit = (e: { preventDefault: () => void; }) => {
 						/>
 						<p className='mt-2 mb-0'>Dont have account? Sign up <a className='text-decoration-none' 
 						href='/signUp'>here</a></p>
-
 				</div>
 				<div className='d-flex flex-row justify-content-between'>
 				<button type="submit" className='mt-4 btn btn-success' >

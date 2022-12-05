@@ -17,6 +17,7 @@ const AllVisitors = () => {
   
   const failure = () => toast('Failed to load data from server',{autoClose:3000})
 
+
   useEffect(() => {
     const fetchData = async() => {
       setLoading(true)
@@ -30,8 +31,6 @@ const AllVisitors = () => {
     }
     fetchData()
   },[])
-
-
 
   return (
     <div>

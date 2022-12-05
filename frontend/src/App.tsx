@@ -21,6 +21,7 @@ import AdminSignIn from './components/AdminSignIn';
 import AdminSignUp from './components/AdminSignUp';
 
 
+
 const App = () => {
   return (
     <div>
@@ -30,6 +31,7 @@ const App = () => {
         <Route path='/host' element={<Host/>}    />
         <Route path='/admin' element={<Protected><Admin/></Protected>}>
           <Route index element={<AllVisitors />} />
+          <Route index element={<LiveVisitors />} />
           <Route path='employee' element={<Employee/>}>
             <Route index element={<EmployeeList />} />
             <Route path='employeeList' element={<EmployeeList />} />
