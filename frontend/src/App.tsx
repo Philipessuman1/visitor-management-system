@@ -28,7 +28,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home/>} ></Route>
         <Route path='/host' element={<Host/>}    />
-        <Route path='/admin' element={<Admin/>}>
+        <Route path='/admin' element={<Protected><Admin/></Protected>}>
           <Route index element={<AllVisitors />} />
           <Route path='employee' element={<Employee/>}>
             <Route index element={<EmployeeList />} />
