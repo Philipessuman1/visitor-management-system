@@ -51,7 +51,7 @@ After visitors or users Sign-In or check-in his/her details they are sent an Ema
 
 
 ### Visit deployed website
-Deployed on Heroku: 
+
 
 ### Swagger deployed Link
 
