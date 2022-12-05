@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import EmployeeService from "../services/EmployeeService";
 
 const AddEmployee = () => {
@@ -12,6 +13,8 @@ const AddEmployee = () => {
   });
 
   const navigate = useNavigate();
+  const success = () => toast('employee added', {autoClose:2000})
+  const failure = () => toast('Failed to add', {autoClose: 2000})
 
   const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -22,11 +25,13 @@ const AddEmployee = () => {
     e.preventDefault();
     EmployeeService.saveEmployee(employee)
       .then((response) => {
-        console.log(response);
+        // console.log(response);
+        success()
         navigate("/employeeList");
       })
       .catch((error) => {
         console.log(error);
+        failure()
       });
   };
 
@@ -55,6 +60,7 @@ const AddEmployee = () => {
             type="text"
             name="Name"
             value={employee.Name}
+            required
             onChange={(e) => handleChange(e)}
             className="form-control" />
         </div>

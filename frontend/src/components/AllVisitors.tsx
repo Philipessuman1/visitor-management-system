@@ -1,15 +1,28 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify';
 
 const AllVisitors = () => {
-  const [allVisitors,setAllVisitors] = useState([])
+  interface Visitor {
+    name:string;
+    email:string;
+    company:string;
+    phone:string;
+    host:string;
+    date:string;
+  }
+
+  const [allVisitors,setAllVisitors] = useState<Visitor[]>([])
   const [loading, setLoading] = useState(true)
   
+  const failure = () => toast('Failed to load data from server',{autoClose:3000})
+
+
   useEffect(() => {
     const fetchData = async() => {
       setLoading(true)
       try {
-        const response = await axios.get('')
+        const response = await axios.get("http://localhost:4000/visitors")
         setAllVisitors(response.data)
       } catch (error) {
         console.log(error)
@@ -18,14 +31,6 @@ const AllVisitors = () => {
     }
     fetchData()
   },[])
-
-  interface Visitor {
-    name:string;
-    email:string;
-    company:string;
-    phone:string;
-    host:string;
-  }
 
   return (
     <div>
@@ -37,8 +42,6 @@ const AllVisitors = () => {
             <th scope="col">Company</th>
             <th scope="col">Contact</th>
             <th scope="col">Host</th>
-            <th scope="col">Log In time</th>
-            <th scope="col">Log Out time</th>
             <th scope="col">Date</th>
             </tr>
         </thead>
@@ -51,9 +54,7 @@ const AllVisitors = () => {
             <td>{visitor.company}</td>
             <td>{visitor.phone}</td>
             <td>{visitor.host}</td>
-            <td>{}</td>
-            <td>{}</td>
-            <td>{}</td>
+            <td>{visitor.date}</td>
             </tr>
             ))}
         </tbody> )}

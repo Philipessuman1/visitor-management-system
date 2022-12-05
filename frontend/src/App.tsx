@@ -18,6 +18,8 @@ import DailyVisitors from './components/DailyVisitors'
 import LogOut from './components/LogOut'
 import Protected from './utils/Protected';
 import AdminSignIn from './components/AdminSignIn';
+import AdminSignUp from './components/AdminSignUp';
+
 
 
 const App = () => {
@@ -28,20 +30,22 @@ const App = () => {
         <Route path='/' element={<Home/>} ></Route>
         <Route path='/host' element={<Host/>}    />
         <Route path='/admin' element={<Protected><Admin/></Protected>}>
+          <Route index element={<AllVisitors />} />
           <Route index element={<LiveVisitors />} />
           <Route path='employee' element={<Employee/>}>
             <Route index element={<EmployeeList />} />
             <Route path='employeeList' element={<EmployeeList />} />
             <Route path='addEmployee' element={<AddEmployee />} />
           </Route>
-          <Route path='live-visitors' element={<LiveVisitors/>} />
+          {/* <Route path='live-visitors' element={<LiveVisitors/>} /> */}
           <Route path='all-visitors' element={<AllVisitors />} />
-          <Route path='daily-visitors' element={<DailyVisitors />} />
+          <Route path='daily-visits' element={<DailyVisitors />} />
         </Route>
         <Route path='/scanner' element={<QrcodeReader />} />
         <Route path='/login' element={<Login />} />
         <Route path='/logout' element={<LogOut />} />
         <Route path='/signIn' element={<AdminSignIn/>} />
+        <Route path='/signUp' element={<AdminSignUp/>} />
       </Routes>
       <ToastContainer />
     </div>
