@@ -1,6 +1,6 @@
-# VI-LOG
+# Vi-Log
 Vi-log is web application for the receptionists who have to maintain a bulky and a very-hard-to-maintain record book for all the visitors that visit the company for their various reasons. It helps in managing visitors visiting the institution and additionally it allows visitors to check-in or Sign-in digitally which eliminates the tedious registeration and other paperwork which is normally done manually. 
-It is really unpleasent and hectic for visitors to fill out forms manually and give details about their visit, to ease the process of registeration and signing-in manually they will be able to Sign-in and Sign-out without stress with the help of the **VI-LOG Web App**.
+It is really unpleasent and hectic for visitors to fill out forms manually and give details about their visit, to ease the process of registeration and signing-in manually they will be able to Sign-in and Sign-out without stress with the help of the **Vi-Log Web App**.
 After visitors or users Sign-In or check-in his/her details they are sent an Email and SMS containing their details and a QR code which can be used on his/her next visit for an easy Sign-in experience where he/she does not have to fill the form all over again. However he/she can Sign-in by just showing the QR Code to the camera screen which then fills the form automatically.
 
 ## Features of Vi-Log Web App.
@@ -40,20 +40,18 @@ After visitors or users Sign-In or check-in his/her details they are sent an Ema
 
 **Front-End :**
 - React App using create-react-app template.
-- Design UI: SASS.
+- Vite.
 
 **Built with**
 * Language: Typescript.
 * Server: Express.
 * Platform: Windows
 * Browser: Chrome, Firefox, Safari.
-* Hosting: Heroku.
+* Hosting:.
 
 
 ### Visit deployed website
 
-
-### Swagger deployed Link
 
 
 

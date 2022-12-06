@@ -9,9 +9,7 @@
   },
   "scripts": {
     "start": "node build/index.js",
-    "dev": "nodemon server/index.ts",
-    "postinstall": "tsc",
-    "build": "tsc --build"
+    "postinstall": "tsc"
   },
   "keywords": [],
   "author": "",
