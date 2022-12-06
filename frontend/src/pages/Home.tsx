@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import '../App.css'
 import { BsFillPeopleFill } from 'react-icons/bs'
 import { MdLogin, MdAdminPanelSettings,MdLogout } from 'react-icons/md'
-import qrCodeImage from '../assets/qrCodeImage.webp'
+import React from "react";
 
 
 
@@ -60,7 +60,7 @@ export default function Home() {
       </div>
 
       <div className="position-absolute bottom-0">
-        <NavLink to='scanner'><img className="scanner-img" src={qrCodeImage} /></NavLink>
+        <NavLink to='scanner'><img className="scanner-img" src='../assets/qrCodeImage.webp' /></NavLink>
       </div>
       
     </div>
