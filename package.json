@@ -1,16 +1,17 @@
 {
-  "name": "server",
+  "name": "vi-log-app",
   "version": "1.0.0",
   "description": "visitors log server",
-  "main": "index.js",
+  "main": "server/index.ts",
   "engines": {
     "node": "18.12.1",
     "npm": "8.19.2"
   },
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "node build/index.js",
     "dev": "nodemon server/index.ts",
-    "build": "tsc"
+    "postinstall": "tsc",
+    "build": "tsc --build"
   },
   "keywords": [],
   "author": "",
