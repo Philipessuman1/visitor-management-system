@@ -133,7 +133,7 @@ router.get('/dailyvisits', async (req, res) => {
 })*/
 
 router.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../index.html'));
+    res.sendFile(path.join(__dirname, '../../frontend/src/pages/Home.tsx'));
 })
 
 

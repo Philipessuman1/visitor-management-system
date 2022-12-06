@@ -1,7 +1,5 @@
 const pool = require( '../db').pool;
-import {Request, Response} from 'express';
-import Admin from '../Admin.type';
-import bcrypt from 'bcrypt';
+import {Response} from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -61,47 +59,6 @@ export const deleteHost = async (body: { id: number; }) => {
     }
 };
 
-
-/*export const loginAdmin = async(email:string, password: string): Promise<Admin | null> =>{
-   
-    try{
-        const result = await pool.query(
-            "SELECT password FROM admins WHERE email = $1", [email]
-        );
-        if(result.rows.length){
-            const {password: hashPassword} = result.rows[0];
-            const isPasswordValid = bcrypt.compareSync(`${password}${process.env.BCRYPT_PASSWORD}`, hashPassword);
-            if (isPasswordValid) {
-                const adminInfo = await pool.query(
-                  'SELECT email FROM admins WHERE email = $1',
-                  [email]
-                );
-                return adminInfo.rows[0];
-              }
-        }
-        return null;
-    } catch(err) {
-        throw new Error(`Unable to login: ${(err as Error).message}`);
-    }
-  };*/
-/*export const getAdminPassword = async (email: string):Promise<Admin | null> => {
-    try {
-        return pool.query(
-        "SELECT password FROM admins WHERE email = $1", [email]
-    )
-    .then((res: { rows: { password: any; }[]; }) => {
-        if (!res.rows[0]){
-            console.log("Doesn't exist")
-            
-        } else {
-            return res.rows[0].password
-        }
-    })
-    }catch (err) {
-        console.error(err)
-        throw {status: 500};
-    }
-};*/
 export const getAllEmployees = async () => {
     return pool.query(
         'SELECT * FROM hosts'

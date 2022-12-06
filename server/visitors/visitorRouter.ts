@@ -28,7 +28,7 @@ router.put('/signoutvisitor/:id', async (req, res) => {
 })
 
 router.get('*', (req, res) => {
-    res.sendFile(__dirname, 'index.html');
+    res.sendFile(__dirname, '../../frontend/src/pages/Home.tsx');
 })
 
 export default router;
