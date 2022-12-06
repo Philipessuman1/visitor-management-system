@@ -129,5 +129,5 @@ export const sendNotifications =  async (id: number) => {
         sms_data.recipient = `${receiverDetails.host_phone}`;
         sms_data.message = `Your visitor has arrived and is waiting for you.`;
         sendSMS()
-}
+};
 
